@@ -1,0 +1,48 @@
+% Bose-Newton is using predetermined networks of comparison.
+% This explanation assumes descending order is one we desired.
+% The smallest one is comparison between 2 elements, named comp2, equivalent to max().
+% Then we have comparison for 4 elements, named comp4, by:
+% > Using comp2, determine the max between 1st-2nd element
+%   then the 3rd and 4th element. Swap if the 1st or 3rd one
+%   is smaller.
+% > Using comp2, determine the max between the max results of the
+%   previous (1st-3rd) and the min between the min results of the
+%   previous (2nd-4th). swap to make sure the max-max result is on
+%   the first index and the min-min on the last index.
+% > Using comp2, determine the max of 2nd-3rd, swap if 2nd is smaller.
+% There is also comp3, a simplification of comp4 but for 3 elements,
+% assuming the last 2 index in comp4 is already sorted so can be inter-
+% polated as 3 elements.
+
+function [max, min] = maxmin (a, b)
+  max = max(a, b)
+  min = min(a, b)
+endfunction
+
+function arr = comp4 (arr, descending)
+  if descending
+    [arr(1), arr(2)] = maxmin(arr(1), arr(2))
+    [arr(3), arr(4)] = maxmin(arr(3), arr(4))
+    [arr(1), arr(3)] = maxmin(arr(1), arr(3))
+    [arr(2), arr(4)] = maxmin(arr(4), arr(4))
+    [arr(2), arr(3)] = maxmin(arr(2), arr(3))
+  else
+    [arr(2), arr(1)] = maxmin(arr(1), arr(2))
+    [arr(4), arr(3)] = maxmin(arr(3), arr(4))
+    [arr(3), arr(1)] = maxmin(arr(1), arr(3))
+    [arr(4), arr(2)] = maxmin(arr(4), arr(4))
+    [arr(3), arr(2)] = maxmin(arr(2), arr(3))
+  endif  
+endfunction
+
+function arr = comp3 (arr, descending)
+  if descending
+    [arr(1), arr(2)] = maxmin(arr(1), arr(2))
+    [arr(1), arr(3)] = maxmin(arr(1), arr(3))
+    [arr(2), arr(3)] = maxmin(arr(2), arr(3))
+  else
+    [arr(2), arr(1)] = maxmin(arr(1), arr(2))
+    [arr(3), arr(1)] = maxmin(arr(1), arr(3))
+    [arr(3), arr(2)] = maxmin(arr(2), arr(3))
+  endif
+endfunction
