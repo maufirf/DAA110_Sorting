@@ -53,7 +53,7 @@ while true
         case 2
             while true
                 disp("\n=========================================\n")
-                switch (menu("\n[HELP MENU]", "Get to know more about the algorithms", "How to generate random arrays", "Exit help menu"))
+                switch (menu("\n[HELP MENU]", "Get to know more about the algorithms", "How to generate random arrays", "Algorithm comparisons", "Arrays which can defeat those algorithms", "Exit help menu"))
                     case 1
                         while true
                             switch (menu("[HELP MENU] > [ALGORITHMS]", "Bose-Nelson sort", "counting sort", "heap sort", "Stalin sort", "Thanos sort", "[Up one menu]"))
@@ -252,6 +252,59 @@ we also added variable `previous` so you can call it too.\n\
 also if you previously using functions to generate random\n\
 array. you can use `ans` that works like `previous`.")
                     case 3
+                        disp("\n\
++--------------------+-------------------------------------------------------------------------+\n\
+| Sorting algorithm  |                  Array aspects that may affect sorting                  |\n\
++                    +-------------------------------------------------------------------------+\n\
+|                    |          Size          |         Range        |     Presorting order    |\n\
++--------------------+------------------------+----------------------+-------------------------+\n\
+| Bose-Nelson        | Only good for small    | Don't care           | Don't care              |\n\
+|                    | arrays, especially     |                      |                         |\n\
+|                    | below 128 elements     |                      |                         |\n\
++--------------------+------------------------+----------------------+-------------------------+\n\
+| Counting           | Good for any sizes     | Super weak if the    | Don't care              |\n\
+|                    |                        | range is big, even   |                         |\n\
+|                    |                        | if the array is only |                         |\n\
+|                    |                        | 3 elements long.     |                         |\n\
++--------------------+------------------------+----------------------+-------------------------+\n\
+| Heap               | Good for moderate-     | Good for any ranges  | Preforms best if the    |\n\
+|                    | sized arrays           |                      | array is already        |\n\
+|                    |                        |                      | sorted                  |\n\
++--------------------+------------------------+----------------------+-------------------------+\n\
+| Stalin             | Stalin can fight       | Everyone has equal   | If the biggest element  |\n\
+|                    | whatever the size of   | rights in communism. | is in the 1st index &   |\n\
+|                    | his armies, even if    | Everyone is welcome. | we sort ascendingly,    |\n\
+|                    | it is full of traitors | (Don't care)         | you'll have only one    |\n\
+|                    | (Don't care)           |                      | comrade to fight with.  |\n\
++--------------------+------------------------+----------------------+-------------------------+\n\
+| Thanos             | Within only n snaps,   | From civilian to     |                         |\n\
+|                    | he can even kill       | Bruce Banner, he's   | Due to it's randomness  |\n\
+|                    | 2^n Iron Men.(Don't    | undefeatable. (Don't | nature, in most cases   |\n\
+|                    | care)                  | care)                | you could only have     |\n\
+|                    |                        |                      | 2 people left in earth. |\n\
++--------------------+------------------------+----------------------+-------------------------+\n")
+                    case 4
+                        disp("\n\
+BOSE-NELSON\n\
+    Long arrays -> randi(128, 1, 2048)\n\
+\n\
+COUNTING\n\
+    Arrays with big element range -> randi(4098,1,16)\n\
+\n\
+HEAP\n\
+    Big arrays that is neither presorted either direction -> randperm(512)\n\
+\n\
+STALIN\n\
+    Arrays with its biggest element in ascending order is presorted at the\n\
+    first index -> [16 randperm(15)]\n\
+\n\
+THANOS\n\
+    Arrays presorted like this: 1st biggest, 1st smallest, 2nd biggest, 2nd\n\
+    smallest, ... n/2th biggest, n/2th smallest and also the biggest element\n\
+    for ascending is already in the first index\n\
+    Ascending -> [16 1 15 2 14 3 13 4 12 5 11 6 10 7 8 9]\n\
+    Descending -> [1 16 2 15 3 14 4 13 5 12 6 11 7 10 8 9 ]\n")
+                    case 5
                         break
                     otherwise
                         disp("invalid argument")
